@@ -119,7 +119,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 1F7561AD2369505B001A5B1E /* CicadaPlayerSDK.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 61E4FE3FE5A24B5BA2A76B80;
+			remoteGlobalIDString = 23A9FD717C674B689809A011;
 			remoteInfo = install;
 		};
 		9E2ABC6D239FBDE800753787 /* PBXContainerItemProxy */ = {
@@ -934,6 +934,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q2Y5QT6GLE;
 				ENABLE_BITCODE = NO;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../SDK/ARM_SIMULATOR",
