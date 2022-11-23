@@ -104,6 +104,8 @@ namespace Cicada{
         int64_t getBufferDuration(int index) const override;
 
         void setUrlToUniqueIdCallback(UrlHashCB cb, void *userData) override;
+        
+        void setM3u8DecryptKeyCallBack(m3u8_decrypt_key_callback m3u8DeckeyCb, void *userData) override;
 
     private:
         explicit playList_demuxer(int dummy) : IDemuxer("")
@@ -140,6 +142,9 @@ namespace Cicada{
         int64_t mFirstSeekPos = INT64_MIN;
         UrlHashCB mUrlHashCb{nullptr};
         void *mUrlHashCbUserData{nullptr};
+        //
+        m3u8_decrypt_key_callback mM3u8DeckeyCb = nullptr;
+        void *mMDkeyCbUserData = nullptr;
     };
 }
 

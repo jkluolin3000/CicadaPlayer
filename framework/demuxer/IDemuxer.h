@@ -248,6 +248,8 @@ namespace Cicada {
 
         virtual void setUrlToUniqueIdCallback(UrlHashCB cb, void *userData)
         {}
+        
+        virtual void setM3u8DecryptKeyCallBack(m3u8_decrypt_key_callback m3u8DeckeyCb, void *userData){};
 
         virtual UTCTimer *getUTCTimer()
         {

@@ -241,6 +241,8 @@ namespace Cicada {
         }
 
         virtual void setBitStreamCb(readCB read, seekCB seek, void *arg){};
+        
+        virtual void setM3u8DecryptKeyCB(m3u8DecryptKeyCB decryptKeyCB, void *userData){};
 
         virtual void setClockRefer(clockRefer cb, void *arg)
         {

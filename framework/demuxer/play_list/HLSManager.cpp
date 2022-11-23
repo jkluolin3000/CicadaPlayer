@@ -59,6 +59,7 @@ namespace Cicada {
                     info->mPStream->setDataSourceConfig(mSourceConfig);
                     info->mPStream->setBitStreamFormat(mMergeVideoHeader, mMergerAudioHeader);
                     info->mPStream->setUrlToUniqueIdCallback(mUrlHashCb, mUrlHashCbUserData);
+                    info->mPStream->setM3u8DecryptKeyCallBack(mM3u8DeckeyCb, mMDkeyCbUserData);
                     mStreamInfoList.push_back(info);
                 }
             }

@@ -106,6 +106,10 @@ namespace Cicada {
             mUrlHashCb = cb;
             mUrlHashCbUserData = userData;
         }
+        virtual void setM3u8DecryptKeyCallBack(m3u8_decrypt_key_callback m3u8DeckeyCb, void *userData) {
+            mM3u8DeckeyCb = m3u8DeckeyCb;
+            mMDkeyCbUserData = userData;
+        }
 
     protected:
         IDataSource *mExtDataSource = nullptr;
@@ -114,6 +118,9 @@ namespace Cicada {
         header_type mMergerAudioHeader = header_type::header_type_no_touch;
         UrlHashCB mUrlHashCb{nullptr};
         void *mUrlHashCbUserData{nullptr};
+        //
+        m3u8_decrypt_key_callback mM3u8DeckeyCb = nullptr;
+        void *mMDkeyCbUserData = nullptr;
     };
 }// namespace Cicada
 

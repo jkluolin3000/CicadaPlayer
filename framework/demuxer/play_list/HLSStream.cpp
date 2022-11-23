@@ -730,6 +730,13 @@ namespace Cicada {
         }
 
         mKeyUrl = keyUrl;
+        if(mM3u8DeckeyCb){
+            uint8_t *temp = mM3u8DeckeyCb(keyUrl.c_str(),mMDkeyCbUserData);
+            if(temp && sizeof(temp) > 0){
+                memcpy(mKey, temp, 16);
+                return true;
+            }
+        }
         {
             std::lock_guard<std::mutex> lock(mHLSMutex);
             delete mSegKeySource;
@@ -796,6 +803,12 @@ namespace Cicada {
 
                 mSegDecrypter->SetOption("decryption key", mKey, 16);
             }
+//            char test[]="3bacdc6395ac48cb";
+//            memcpy(mKey, test, 16);
+//            if (mSegDecrypter == nullptr)
+//                                mSegDecrypter = unique_ptr<ISegDecrypter>(
+//                                                    SegDecryptorFactory::create(mCurrentEncryption.method, Decrypter_read_callback, this));
+//            mSegDecrypter->SetOption("decryption key", mKey, 16);
 
             if (updateIV()) {
                 mSegDecrypter->SetOption("decryption IV", &mCurrentEncryption.iv[0], 16);

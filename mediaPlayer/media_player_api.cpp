@@ -64,6 +64,15 @@ int CicadaSetListener(playerHandle *pHandle, const playerListener &Listener)
     return 0;
 }
 
+void CicadaSetM3u8DecryptKeyCB(playerHandle *pHandle, m3u8DecryptKeyCB cb, void *userData)
+{
+    GET_PLAYER;
+
+    if (player) {
+        player->setM3u8DecryptKeyCB(cb, userData);
+    }
+}
+
 void CicadaSetOnRenderCallBack(playerHandle *pHandle, onRenderFrame cb, void *userData)
 {
     GET_PLAYER;

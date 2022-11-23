@@ -66,6 +66,7 @@ namespace Cicada {
         listener.AutoPlayStart = autoPlayStart;
         CicadaSetListener(handle, listener);
         CicadaSetMediaFrameCb(handle, onMediaFrameCallback, this);
+        CicadaSetM3u8DecryptKeyCB(handle, onM3u8DecryptKeyCallback, this);
         mConfig = new MediaPlayerConfig();
         configPlayer(mConfig);
         mQueryListener = new QueryListener(this);
@@ -1062,7 +1063,15 @@ namespace Cicada {
 
         player->mAbrManager->Start();
     }
-
+    uint8_t *MediaPlayer::onM3u8DecryptKeyCallback(const char *url, void *userData)
+    {
+        GET_MEDIA_PLAYER
+        
+        if(player->mListener.m3u8DecryptKeyCallback){
+            return player->mListener.m3u8DecryptKeyCallback(url,player->mListener.userData);
+        }
+        return nullptr;
+    }
     void MediaPlayer::mediaInfoGetCallback(int64_t count, const void *Infos, void *userData)
     {
         GET_MEDIA_PLAYER

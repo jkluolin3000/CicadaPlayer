@@ -21,6 +21,8 @@ typedef void (*demuxer_callback_interrupt_data)(void *arg, int inter);
 
 typedef int (*demuxer_callback_open)(void *arg, const char *url, int64_t start, int64_t end);
 
+typedef uint8_t *(*m3u8_decrypt_key_callback)(const char *url, void *userData);
+
 enum {
     EN_FRAMEWORK_SERVICE_PLAYER_BASE = 0x00001000,
     EN_FRAMEWORK_SERVICE_PLAYER_DATA_SOURCE_SERVICE,

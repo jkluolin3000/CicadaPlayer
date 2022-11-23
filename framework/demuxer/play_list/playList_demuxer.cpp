@@ -69,6 +69,7 @@ namespace Cicada {
         playlistManager->setDataSourceConfig(sourceConfig);
         playlistManager->setBitStreamFormat(mMergeVideoHeader, mMergeAudioHeader);
         playlistManager->setUrlToUniqueIdCallback(mUrlHashCb, mUrlHashCbUserData);
+        playlistManager->setM3u8DecryptKeyCallBack(mM3u8DeckeyCb, mMDkeyCbUserData);
         mPPlaylistManager = playlistManager;
         ret = playlistManager->init();
 
@@ -288,6 +289,10 @@ namespace Cicada {
     {
         mUrlHashCb = cb;
         mUrlHashCbUserData = userData;
+    }
+    void playList_demuxer::setM3u8DecryptKeyCallBack(m3u8_decrypt_key_callback m3u8DeckeyCb, void *userData) {
+        mM3u8DeckeyCb = m3u8DeckeyCb;
+        mMDkeyCbUserData = userData;
     }
     UTCTimer *playList_demuxer::getUTCTimer()
     {

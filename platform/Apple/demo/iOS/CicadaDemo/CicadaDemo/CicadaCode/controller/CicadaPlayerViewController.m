@@ -854,6 +854,12 @@ tableview点击外挂字幕回调
     //  NSLog(@"onAudioRendered pts is %lld\n",pts);
 }
 
+- (NSData *)getM3u8DecryptKeyData:(CicadaPlayer*)player url:(NSString *)url {
+    NSString *str = @"3bacdc6395ac48cb";
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    return data;
+}
+
 - (BOOL)setActive:(BOOL)active error:(NSError **)outError
 {
     [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];

@@ -89,6 +89,8 @@ typedef void (*playerType13Callback)(int64_t errorCode, const void *errorMsg, vo
 
 typedef void (*playerType123Callback)(int64_t index, int64_t size, const void *subtitle, void *userData);
 
+typedef uint8_t *(*playerM3u8DecryptKeyCallback)(const char *url, void *userData);
+
 typedef struct playerListener_t {
     playerVoidCallback LoopingStart;
     playerVoidCallback Prepared;
@@ -122,6 +124,7 @@ typedef struct playerListener_t {
     playerType123Callback SubtitleShow;
     playerType13Callback SubtitleExtAdd;
     playerType13Callback SubtitleHeader;
+    playerM3u8DecryptKeyCallback m3u8DecryptKeyCallback;
     void *userData;
 } playerListener;
 
@@ -186,6 +189,8 @@ class AMediaFrame;
 typedef void (*playerMediaFrameCb)(void *arg, const IAFPacket *frame, StreamType type);
 
 typedef int (*readCB)(void *arg, uint8_t *buffer, int size);
+
+typedef uint8_t *(*m3u8DecryptKeyCB)(const char *url, void *userData);
 
 typedef int64_t (*seekCB)(void *arg, int64_t offset, int whence);
 

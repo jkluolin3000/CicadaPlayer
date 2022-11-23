@@ -84,7 +84,7 @@ protected:
 
     static CicadaStatus mapStatus(int64_t status);
 
-
+    static uint8_t *onGetM3u8DecryptKey(const char *url, void *userData);
 private:
     __weak CicadaPlayer * mPlayer = nullptr;
     __weak id<CicadaDelegate> mInnerDelegate = nil;

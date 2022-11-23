@@ -316,6 +316,11 @@
  */
 - (void)onAudioRendered:(CicadaPlayer *)player timeMs:(int64_t)timeMs pts:(int64_t)pts;
 
+/**
+ @brief 外部传入m3u8加密数据 add by luolin for nd decrypt m3u8
+ @param url m3u8中的加密访问URL
+ */
+- (NSData *)getM3u8DecryptKeyData:(CicadaPlayer*)player url:(NSString *)url;
 @end
 
 #endif /* CicadaDelegate_h */

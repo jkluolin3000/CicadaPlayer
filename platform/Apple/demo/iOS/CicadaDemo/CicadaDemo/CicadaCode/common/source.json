@@ -28,7 +28,7 @@
       "name": "hls 多码率"
     },
     {
-      "url": "https://alivc-demo-vod.aliyuncs.com/d2c89d7210d443109434685f45ed607b/45ed0cccd8092bf25ee33764b5a52be4-sd-encrypt-stream.m3u8",
+      "url": "https://v3.debug.ndaeweb.com/1/video/5cf03a21abc0403c82ab8acc476ab1f3/1041dbd5d849f3be276df45bd3a8dfde.1920.1080.true/1041dbd5d849f3be276df45bd3a8dfde.1920.1080.m3u8",
       "type": "url",
       "name": "hls aes-128"
     }

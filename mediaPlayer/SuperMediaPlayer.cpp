@@ -122,6 +122,11 @@ int64_t SuperMediaPlayer::GetMasterClockPts()
 {
     return mMasterClock.GetTime();
 }
+void SuperMediaPlayer::setM3u8DecryptKeyCB(m3u8DecryptKeyCB decryptKeyCB, void *userData)
+{
+    mBSM3u8DecryptKeyCB = decryptKeyCB;
+    mBSMDptKeyUserData = userData;
+}
 
 void SuperMediaPlayer::setBitStreamCb(readCB read, seekCB seek, void *arg)
 {

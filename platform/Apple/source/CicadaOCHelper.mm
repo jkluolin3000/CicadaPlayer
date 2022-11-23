@@ -177,6 +177,7 @@ void CicadaOCHelper::getListener(playerListener &listener)
     listener.ErrorCallback = onError;
     listener.Prepared = onPrepared;
     listener.Completion = onCompletion;
+    listener.m3u8DecryptKeyCallback = onGetM3u8DecryptKey;
 }
 
 CicadaPlayer * CicadaOCHelper::getOCPlayer(void *userData)
@@ -558,4 +559,15 @@ void CicadaOCHelper::onAudioRendered(int64_t theTimeMs, int64_t thePts, void *us
           [player.delegate onAudioRendered:player timeMs:theTimeMs pts:thePts];
         });
     }
+}
+
+UInt8 *CicadaOCHelper::onGetM3u8DecryptKey(const char *url, void *userData){
+    Byte *bt;
+    __weak CicadaPlayer * player = getOCPlayer(userData);
+    if (player.delegate && [player.delegate respondsToSelector:@selector(getM3u8DecryptKeyData:url:)]) {
+        NSString *sUrl = [NSString stringWithCString:(char *)url encoding:NSUTF8StringEncoding];
+            NSData *data = [player.delegate getM3u8DecryptKeyData:player url:sUrl];
+        return (UInt8 *)[data bytes];
+    }
+    return nullptr;
 }

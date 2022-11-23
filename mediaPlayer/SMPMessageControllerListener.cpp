@@ -143,6 +143,10 @@ void SMPMessageControllerListener::ProcessPrepareMsg()
     if (mPlayer.mDemuxerService->getDemuxerHandle()) {
 #ifdef __APPLE__
         mPlayer.mDemuxerService->getDemuxerHandle()->setBitStreamFormat(header_type::header_type_extract, header_type::header_type_extract);
+        //add by luolin
+        if(mPlayer.mBSM3u8DecryptKeyCB){
+            mPlayer.mDemuxerService->getDemuxerHandle()->setM3u8DecryptKeyCallBack(mPlayer.mBSM3u8DecryptKeyCB, mPlayer.mBSMDptKeyUserData);
+        }
 #else
         mPlayer.mDemuxerService->getDemuxerHandle()->setBitStreamFormat(header_type::header_type_merge, header_type::header_type_merge);
 #endif

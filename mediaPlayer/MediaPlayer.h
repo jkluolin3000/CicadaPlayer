@@ -437,6 +437,8 @@ namespace Cicada {
         static void captureScreenResult(int64_t width, int64_t height, const void *buffer, void *userData);
 
         static void autoPlayStart(void *userData);
+        
+        static uint8_t *onM3u8DecryptKeyCallback(const char *url, void *userData);
 
         void abrChanged(int stream);
 

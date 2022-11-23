@@ -178,6 +178,8 @@ namespace Cicada {
         void ClearScreen() override;
 
         void SetDataSource(const char *url) override;
+        
+        void setM3u8DecryptKeyCB(m3u8DecryptKeyCB decryptKeyCB, void *userData) override;
 
         void setBitStreamCb(readCB read, seekCB seek, void *arg) override;
 
@@ -608,6 +610,8 @@ namespace Cicada {
         bool mOpenAudioDeviceFailed{false};
 
         std::string mContainerInfo{};
+        m3u8DecryptKeyCB mBSM3u8DecryptKeyCB = nullptr;
+        void *mBSMDptKeyUserData = nullptr;
     };
 }// namespace Cicada
 #endif// CICADA_PLAYER_SERVICE_H
