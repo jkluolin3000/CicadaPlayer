@@ -855,6 +855,7 @@ tableview点击外挂字幕回调
 }
 
 - (NSData *)getM3u8DecryptKeyData:(CicadaPlayer*)player url:(NSString *)url {
+    //测试代码需外部实现
     NSString *str = @"3bacdc6395ac48cb";
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     return data;
