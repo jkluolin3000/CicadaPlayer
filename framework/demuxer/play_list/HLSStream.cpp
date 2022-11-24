@@ -4,6 +4,7 @@
 #define LOG_TAG "HLSStream"
 
 #include "HLSStream.h"
+#include "HLSExtension.h"
 #include "Helper.h"
 #include "data_source/dataSourcePrototype.h"
 #include "demuxer/DemuxerMeta.h"
@@ -730,6 +731,12 @@ namespace Cicada {
         }
 
         mKeyUrl = keyUrl;
+        if (hlsExtension != NULL && hlsExtension->pParseM3U8Key != NULL) {
+            uint8_t *cKey = hlsExtension->pParseM3U8Key(keyUrl.c_str(), hlsExtension->userData);
+            memcpy(mKey, cKey, 16);
+            return true;
+        }
+        
         {
             std::lock_guard<std::mutex> lock(mHLSMutex);
             delete mSegKeySource;
