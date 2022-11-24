@@ -78,6 +78,8 @@ if (ENABLE_HLS_DEMUXER)
             play_list/AbstractStream.cpp
             play_list/HLSStream.h
             play_list/HLSStream.cpp
+            play_list/HLSExtension.h
+            play_list/HLSExtension.cpp
             play_list/SegmentTracker.h
             play_list/SegmentTracker.cpp
             play_list/segment_decrypt/SegmentEncryption.cpp
