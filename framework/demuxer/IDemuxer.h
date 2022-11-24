@@ -70,6 +70,7 @@ namespace Cicada {
             int64_t mDuration{0};
             Stream_type type{STREAM_TYPE_UNKNOWN};
             std::vector<entryInfo> mEntry;
+            
         };
 
     public:
@@ -276,6 +277,7 @@ namespace Cicada {
         demuxer_callback_enableCache mEnableCache{nullptr};
         void *mUserArg{nullptr};
         std::function<void(std::string, std::string)> mDemuxerCbfunc;
+        
         string mPath{};
         IDataSource::SourceConfig sourceConfig{};
 

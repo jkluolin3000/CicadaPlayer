@@ -167,7 +167,6 @@ namespace Cicada {
 
         mMutex.unlock();
         int count = 0;
-
         for (auto &it : processQueue) {
             OnPlayerMsgProcessor(it.msgType, it.msgParam);
             recycleMsg(it);

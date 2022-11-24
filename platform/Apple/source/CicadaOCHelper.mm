@@ -2,6 +2,7 @@
 #include "CicadaOCHelper.h"
 #include <EventCodeMap.h>
 #include <ErrorCodeMap.h>
+#include <demuxer/play_list/HLSExtension.h>
 
 using namespace Cicada;
 
@@ -177,6 +178,9 @@ void CicadaOCHelper::getListener(playerListener &listener)
     listener.ErrorCallback = onError;
     listener.Prepared = onPrepared;
     listener.Completion = onCompletion;
+    
+    hlsExtension->pParseM3U8Key = onGetM3u8DecryptKey;
+    hlsExtension->userData = this;
 }
 
 CicadaPlayer * CicadaOCHelper::getOCPlayer(void *userData)
@@ -559,3 +563,17 @@ void CicadaOCHelper::onAudioRendered(int64_t theTimeMs, int64_t thePts, void *us
         });
     }
 }
+
+UInt8 *CicadaOCHelper::onGetM3u8DecryptKey(const char *url, void *userData){
+    Byte *bt;
+    __weak CicadaPlayer * player = getOCPlayer(userData);
+    if (player.delegate && [player.delegate respondsToSelector:@selector(getM3u8DecryptKeyData:url:)]) {
+        NSString *sUrl = [NSString stringWithCString:(char *)url encoding:NSUTF8StringEncoding];
+        NSData *data = [player.delegate getM3u8DecryptKeyData:player url:sUrl];
+        return (UInt8 *)[data bytes];
+    }
+    return nullptr;
+}
+
+
+//- (NSData *)parseM3U8KeyWithUrl:(NSString *)url

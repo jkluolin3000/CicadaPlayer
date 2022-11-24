@@ -22,7 +22,7 @@
     [super viewDidLoad];
     
     // 开发测试用
-    self.URLTextField.text = @"http://player.alicdn.com/video/aliyunmedia.mp4";
+    self.URLTextField.text = @"http://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/bipbop_16x9_variant.m3u8";
     
 //    // 苹果官方测试视频
 //    self.URLTextField.text = @"https://devstreaming-cdn.apple.com/videos/streaming/examples/bipbop_16x9/bipbop_16x9_variant.m3u8";

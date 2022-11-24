@@ -126,12 +126,12 @@
         self.player = [[CicadaPlayer alloc] init];
     }
     
-    self.player.enableHardwareDecoder = [CicadaTool isHardware];
+//    self.player.enableHardwareDecoder = [CicadaTool isHardware];
     self.player.playerView = self.CicadaView.playerView;
     self.player.delegate = self;
     //enable to test render delegate
 //    self.player.renderDelegate = self;
-    self.player.scalingMode = CICADA_SCALINGMODE_SCALEASPECTFIT;
+//    self.player.scalingMode = CICADA_SCALINGMODE_SCALEASPECTFIT;
     [self.settingAndConfigView setVolume:self.player.volume/2];
     [self setConfig];
 
@@ -491,17 +491,17 @@
 }
 
 - (void)setConfig {
-    NSArray *configArray = [self.settingAndConfigView getConfigArray];
-    CicadaConfig *config = [self.player getConfig];
-    [config refreshConfigWithArray:configArray];
-    [self.player setConfig:config];
+//    NSArray *configArray = [self.settingAndConfigView getConfigArray];
+//    CicadaConfig *config = [self.player getConfig];
+//    [config refreshConfigWithArray:configArray];
+//    [self.player setConfig:config];
 }
 
 - (void)setCacheConfig {
-    NSDictionary *cacheDic = [self.settingAndConfigView getCacheConfigDictionary];
-    CicadaCacheConfig *config = [[CicadaCacheConfig alloc]init];
-    [config refreshConfigWithDictionary:cacheDic];
-    [self.player setCacheConfig:config];
+//    NSDictionary *cacheDic = [self.settingAndConfigView getCacheConfigDictionary];
+//    CicadaCacheConfig *config = [[CicadaCacheConfig alloc]init];
+//    [config refreshConfigWithDictionary:cacheDic];
+//    [self.player setCacheConfig:config];
 }
 
 /**
@@ -562,6 +562,8 @@
  @param info 选择的track
  */
 - (void)settingAndConfigView:(CicadaSettingAndConfigView *)view tableViewDidSelectTrack:(CicadaTrackInfo *)info {
+    CicadaTrackInfo *audioTrack = [self.player getCurrentTrack:CICADA_TRACK_AUDIO];
+    CicadaTrackInfo *vidowTrack = [self.player getCurrentTrack:CICADA_TRACK_VIDEO];
     [self.player selectTrack:info.trackIndex];
 }
 
@@ -816,6 +818,21 @@ tableview点击外挂字幕回调
     [CicadaTool hudWithText:hudText view:self.view];
 }
 
+- (int8_t *)parseM3U8KeyWithUrl:(NSString *)url {
+    NSData *data;
+    data.bytes;
+    int8_t *cKey = "3bacdc6395ac48cb";
+    //        memcpy(mKey, cKey, 16);
+    return cKey;
+}
+
+- (NSData *)getM3u8DecryptKeyData:(CicadaPlayer*)player url:(NSString *)url {
+    NSString *str = @"3bacdc6395ac48cb";
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    return data;
+}
+
+
 /**
  @brief 获取缩略图成功回调
  @param positionMs 指定的缩略图位置
@@ -893,5 +910,7 @@ tableview点击外挂字幕回调
           lineSize[0], lineSize[1], lineSize[2], width, height);
     return NO;
 }
+
+
 
 @end

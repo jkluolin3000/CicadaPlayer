@@ -83,6 +83,8 @@ protected:
                         void *userData);
 
     static CicadaStatus mapStatus(int64_t status);
+    
+    static UInt8 *onGetM3u8DecryptKey(const char *url, void *userData);
 
 
 private:

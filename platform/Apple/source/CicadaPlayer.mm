@@ -29,6 +29,7 @@ using namespace Cicada;
 
 typedef void(^AliyunLogCallbackBlock) (CicadaLogLevel logLevel,NSString *strLog);
 static AliyunLogCallbackBlock g_logBlock = nil;
+static NSString *cicadaVersion = @"0.0.1";
 
 //void playerLogSetLevel(int level, int enableConsole)
 extern "C"
@@ -400,6 +401,7 @@ static int logOutput = 1;
 
 - (void)start
 {
+    NSLog(@"cicadaVersion:%@", cicadaVersion);
     if (self.player) {
         self.player->Start();
     }

@@ -50,8 +50,6 @@ namespace Cicada {
         void ProcessAddExtSubtitleMsg(const std::string &url) final;
 
         void ProcessSelectExtSubtitleMsg(int index, bool select) final;
-
-
     private:
         void switchVideoStream(int index, Stream_type type);
         void switchAudio(int index);

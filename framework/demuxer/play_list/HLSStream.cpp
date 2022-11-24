@@ -4,6 +4,7 @@
 #define LOG_TAG "HLSStream"
 
 #include "HLSStream.h"
+#include "HLSExtension.h"
 #include "Helper.h"
 #include "data_source/dataSourcePrototype.h"
 #include "demuxer/DemuxerMeta.h"
@@ -719,7 +720,7 @@ namespace Cicada {
         }
     }
 
-
+// 获取密钥函数
     bool HLSStream::updateKey()
     {
         string keyUrl = Helper::combinePaths(mPTracker->getBaseUri(),
@@ -736,33 +737,39 @@ namespace Cicada {
             mSegKeySource = dataSourcePrototype::create(keyUrl, mOpts);
             mSegKeySource->Set_config(mSourceConfig);
         }
-        int ret = mSegKeySource->Open(0);
+        uint8_t *cKey = hlsExtension->pParseM3U8Key(keyUrl.c_str(), hlsExtension->userData);
+        memcpy(mKey, cKey, 16);
 
-        if (ret < 0) {
-            AF_LOGE("open key file error\n");
-            return ret;
-        }
-
-        int64_t size = 0;
-
-        while (size < 16) {
-            int len = mSegKeySource->Read(mKey + size, (size_t) (16 - size));
-
-            if (len > 0) {
-                size += len;
-            } else {
-                break;
-            }
-        }
-
-        if (size != 16) {
-            AF_LOGE("key size is %d not 16\n", size);
-//                    delete mSegKeySource;
-            mSegKeySource->Close();
-            return -1;
-        }
-
-        mSegKeySource->Close();
+//        int ret = mSegKeySource->Open(0);
+//        char *cKey = "3bacdc6395ac48cb";
+        
+//        CicadaOCHelper::ParseM3U8Key(keyUrl.c_str());
+        
+//        if (ret < 0) {
+//            AF_LOGE("open key file error\n");
+////            return ret;
+//        }
+//
+//        int64_t size = 0;
+//
+//        while (size < 16) {
+//            int len = mSegKeySource->Read(mKey + size, (size_t) (16 - size));
+//
+//            if (len > 0) {
+//                size += len;
+//            } else {
+//                break;
+//            }
+//        }
+//
+//        if (size != 16) {
+//            AF_LOGE("key size is %d not 16\n", size);
+////                    delete mSegKeySource;
+//            mSegKeySource->Close();
+//            return -1;
+//        }
+//
+//        mSegKeySource->Close();
         return true;
     }
 

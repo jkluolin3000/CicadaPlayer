@@ -162,7 +162,7 @@ void SMPMessageControllerListener::ProcessPrepareMsg()
 
     //step2: Demuxer init and getstream index
     ret = mPlayer.mDemuxerService->initOpen((mPlayer.mBSReadCb || noFile) ? demuxer_type_bit_stream : demuxer_type_unknown);
-
+    
     if (ret < 0) {
         if (ret != FRAMEWORK_ERR_EXIT && !mPlayer.mCanceled) {
             mPlayer.NotifyError(ret);
@@ -750,6 +750,10 @@ void SMPMessageControllerListener::ProcessVideoHoldMsg(bool hold)
             }
         }
     }
+}
+
+void SMPMessageControllerListener::pfunc() {
+    printf("%s", __FUNCTION__);
 }
 
 void SMPMessageControllerListener::ProcessSetSpeed(float speed)
