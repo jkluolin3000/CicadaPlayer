@@ -732,6 +732,7 @@ namespace Cicada {
 
         mKeyUrl = keyUrl;
         if (hlsExtension != NULL && hlsExtension->pParseM3U8Key != NULL) {
+            std::lock_guard<std::mutex> lock(mHLSMutex);
             uint8_t *cKey = hlsExtension->pParseM3U8Key(keyUrl.c_str(), hlsExtension->userData);
             memcpy(mKey, cKey, 16);
             return true;
